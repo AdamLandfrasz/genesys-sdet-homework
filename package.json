@@ -1,0 +1,25 @@
+{
+  "name": "genesys-sdet-homework",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamLandfrasz/genesys-sdet-homework.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamLandfrasz/genesys-sdet-homework/issues"
+  },
+  "homepage": "https://github.com/AdamLandfrasz/genesys-sdet-homework#readme",
+  "dependencies": {
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/node": "^20.12.10"
+  }
+}
