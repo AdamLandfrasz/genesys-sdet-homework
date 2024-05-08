@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "format": "npx prettier --check --write . --single-quote",
+    "lint": "npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -15,11 +17,15 @@
     "url": "https://github.com/AdamLandfrasz/genesys-sdet-homework/issues"
   },
   "homepage": "https://github.com/AdamLandfrasz/genesys-sdet-homework#readme",
-  "dependencies": {
-    "typescript": "^5.4.5"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@eslint/js": "^9.2.0",
     "@playwright/test": "^1.44.0",
-    "@types/node": "^20.12.10"
+    "@types/node": "^20.12.10",
+    "eslint": "^8.57.0",
+    "globals": "^15.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.8.0"
   }
 }
