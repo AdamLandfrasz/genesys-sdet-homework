@@ -4,9 +4,7 @@ import { SwagLabsInventory } from '../test/pages/swag-labs-inventory';
 import { SwagLabsCheckout } from '../test/pages/swag-labs-checkout';
 
 test.describe('Automated Purchase Process', () => {
-    test('log in with credentials and go through check out process', async ({
-        page,
-    }) => {
+    test('log in and go through check out', async ({ page }) => {
         const swagLabsLanding = new SwagLabsLanding(page);
         await swagLabsLanding.goto();
         await expect(page).toHaveTitle(/Swag Labs/);
@@ -32,6 +30,29 @@ test.describe('Automated Purchase Process', () => {
         await expect(swagLabsCheckout.completeHeader).toBeVisible();
         await expect(swagLabsCheckout.completeHeader).toHaveText(
             'Thank you for your order!',
+        );
+    });
+
+    test('should show error for mandatory fields', async ({ page }) => {
+        const swagLabsLanding = new SwagLabsLanding(page);
+        await swagLabsLanding.goto();
+        await expect(page).toHaveTitle(/Swag Labs/);
+        await swagLabsLanding.loginButton.click();
+        await expect(swagLabsLanding.errorMessage).toBeVisible();
+        await expect(swagLabsLanding.errorMessage).toHaveText(
+            'Epic sadface: Username is required',
+        );
+        await swagLabsLanding.logInWithCredentials(
+            'standard_user',
+            'secret_sauce',
+        );
+        await expect(page).toHaveURL(/inventory.html/);
+
+        const swagLabsInventory = new SwagLabsInventory(page);
+        await swagLabsInventory.footerCopy.scrollIntoViewIfNeeded();
+        await expect(swagLabsInventory.footerCopy).toHaveText(/2024/);
+        await expect(swagLabsInventory.footerCopy).toHaveText(
+            /Terms of Service/,
         );
     });
 });
