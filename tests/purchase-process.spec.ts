@@ -10,5 +10,8 @@ test.describe('Automated Purchase Process', () => {
         await expect(page).toHaveTitle(/Swag Labs/);
         await swagLabsPage.logInWithCredentials();
         await expect(page).toHaveURL(/inventory.html/);
+
+        await swagLabsPage.putItemInCart('Sauce Labs Backpack')
+        await swagLabsPage.putItemInCart('Sauce Labs Fleece Jacket')
     });
 });
