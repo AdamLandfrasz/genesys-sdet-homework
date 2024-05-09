@@ -2,8 +2,9 @@ import { type Page, type Locator, expect } from '@playwright/test';
 import { BasePage } from './base-page';
 
 export class SwagLabsInventory extends BasePage {
-    shoppingCart: Locator;
-    shoppingCartBadge: Locator;
+    readonly shoppingCart: Locator;
+    readonly shoppingCartBadge: Locator;
+
     constructor(page: Page) {
         super(page, 'https://www.saucedemo.com/inventory.html');
         this.shoppingCart = this.page.locator('#shopping_cart_container a');
