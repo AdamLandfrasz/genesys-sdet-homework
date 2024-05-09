@@ -1,17 +1,23 @@
 import { test, expect } from '@playwright/test';
-import { SwagLabsHome } from '../test/pages/swag-labs';
+import { SwagLabsLanding } from '../test/pages/swag-labs-landing';
+import { SwagLabsInventory } from '../test/pages/swag-labs-inventory';
 
 test.describe('Automated Purchase Process', () => {
     test('log in with credentials and go through check out process', async ({
         page,
     }) => {
-        const swagLabsPage = new SwagLabsHome(page);
-        await swagLabsPage.goto();
+        const swagLabsLanding = new SwagLabsLanding(page);
+        await swagLabsLanding.goto();
         await expect(page).toHaveTitle(/Swag Labs/);
-        await swagLabsPage.logInWithCredentials();
+        await swagLabsLanding.logInWithCredentials();
         await expect(page).toHaveURL(/inventory.html/);
 
-        await swagLabsPage.putItemInCart('Sauce Labs Backpack')
-        await swagLabsPage.putItemInCart('Sauce Labs Fleece Jacket')
+        const swagLabsInventory = new SwagLabsInventory(page);
+        await swagLabsInventory.putItemInCart('Sauce Labs Backpack');
+        await swagLabsInventory.putItemInCart('Sauce Labs Fleece Jacket');
+        await expect(swagLabsInventory.shoppingCartBadge).toHaveText('2');
+
+        await swagLabsInventory.shoppingCart.click();
+        await expect(page).toHaveURL(/cart.html/);
     });
 });
