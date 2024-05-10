@@ -14,7 +14,7 @@ export class BasePage {
         await this.page.goto(this.url);
     }
 
-    protected async readJSONFile(filename: string): Promise<any> {
+    protected async readJSONFile(filename: string): Promise<unknown> {
         return JSON.parse(await fs.readFile(filename, 'utf-8'));
     }
 }
