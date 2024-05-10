@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import { type Page } from '@playwright/test';
+import { type BrowserContext, type Page } from '@playwright/test';
 
 export class BasePage {
     protected page: Page;
@@ -14,7 +14,16 @@ export class BasePage {
         await this.page.goto(this.url);
     }
 
-    protected async readJSONFile(filename: string): Promise<unknown> {
+    async waitForNewPage(
+        context: BrowserContext,
+        action: () => Promise<any>,
+    ): Promise<Page> {
+        const pagePromise = context.waitForEvent('page');
+        await action();
+        return await pagePromise;
+    }
+
+    protected async readJSONFile(filename: string): Promise<any> {
         return JSON.parse(await fs.readFile(filename, 'utf-8'));
     }
 }

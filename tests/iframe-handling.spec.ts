@@ -11,9 +11,9 @@ test.describe('Navigate around guru99 demo page', () => {
         await guruDemo.goto();
         await guruDemo.gdprAcceptButton.click();
 
-        const pagePromise = context.waitForEvent('page');
-        await guruDemo.iframeImage.click();
-        const newPage = await pagePromise;
+        const newPage = await guruDemo.waitForNewPage(context, async () => {
+            await guruDemo.iframeImage.click();
+        });
         await expect(newPage).toHaveTitle(
             /Selenium Live Project: FREE Real Time Project for Practice/,
         );
