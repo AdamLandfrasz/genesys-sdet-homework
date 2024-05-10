@@ -1,5 +1,5 @@
 import { type Page, type Locator } from '@playwright/test';
-import { BasePage } from './base-page';
+import { BasePage } from '../base-page';
 
 export class SwagLabsLanding extends BasePage {
     readonly usernameInput: Locator;

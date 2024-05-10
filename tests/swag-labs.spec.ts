@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { SwagLabsLanding } from '../test/pages/swag-labs-landing';
-import { SwagLabsInventory } from '../test/pages/swag-labs-inventory';
-import { SwagLabsCheckout } from '../test/pages/swag-labs-checkout';
+import { SwagLabsLanding } from '../test/pages/swag-labs/swag-labs-landing';
+import { SwagLabsInventory } from '../test/pages/swag-labs/swag-labs-inventory';
+import { SwagLabsCheckout } from '../test/pages/swag-labs/swag-labs-checkout';
 
 test.describe('Automated Purchase Process', () => {
     test('log in and go through check out', async ({ page }) => {

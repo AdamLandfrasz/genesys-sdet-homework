@@ -1,5 +1,5 @@
 import { type Page, type Locator, expect } from '@playwright/test';
-import { BasePage } from './base-page';
+import { BasePage } from '../base-page';
 
 export class SwagLabsInventory extends BasePage {
     readonly shoppingCart: Locator;
