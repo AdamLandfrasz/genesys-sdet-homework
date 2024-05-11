@@ -3,9 +3,14 @@ import { TextEditor } from '../test/pages/text-editor/text-editor';
 import { TextFormat } from '../test/types/text-format';
 
 test.describe('Automate online html editor', () => {
-    test('should type and format text', async ({ page }) => {
-        const onlineTextEditor = new TextEditor(page);
+    let onlineTextEditor: TextEditor;
+
+    test.beforeEach(async ({ page }) => {
+        onlineTextEditor = new TextEditor(page);
         await onlineTextEditor.goto();
+    });
+
+    test('should type and format text', async () => {
         await onlineTextEditor.typeTextWithFormatting(
             'Automation',
             TextFormat.Bold,

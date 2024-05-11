@@ -4,10 +4,15 @@ import { SwagLabsInventory } from '../test/pages/swag-labs/swag-labs-inventory';
 import { SwagLabsCheckout } from '../test/pages/swag-labs/swag-labs-checkout';
 
 test.describe('Automated Purchase Process', () => {
-    test('log in and go through check out', async ({ page }) => {
-        const swagLabsLanding = new SwagLabsLanding(page);
+    let swagLabsLanding: SwagLabsLanding;
+
+    test.beforeEach(async ({ page }) => {
+        swagLabsLanding = new SwagLabsLanding(page);
         await swagLabsLanding.goto();
         await expect(page).toHaveTitle(/Swag Labs/);
+    });
+
+    test('log in and go through check out', async ({ page }) => {
         await swagLabsLanding.logInWithCredentials();
         await expect(page).toHaveURL(/inventory.html/);
 
@@ -24,8 +29,10 @@ test.describe('Automated Purchase Process', () => {
         await expect(page).toHaveURL(/checkout-step-one.html/);
         await swagLabsCheckout.provideBillingInfo();
         await swagLabsCheckout.continueButton.click();
+
         await expect(page).toHaveURL(/checkout-step-two.html/);
         await swagLabsCheckout.finishButton.click();
+
         await expect(page).toHaveURL(/checkout-complete.html/);
         await expect(swagLabsCheckout.completeHeader).toBeVisible();
         await expect(swagLabsCheckout.completeHeader).toHaveText(
@@ -34,9 +41,6 @@ test.describe('Automated Purchase Process', () => {
     });
 
     test('should show error for mandatory fields', async ({ page }) => {
-        const swagLabsLanding = new SwagLabsLanding(page);
-        await swagLabsLanding.goto();
-        await expect(page).toHaveTitle(/Swag Labs/);
         await swagLabsLanding.loginButton.click();
         await expect(swagLabsLanding.errorMessage).toBeVisible();
         await expect(swagLabsLanding.errorMessage).toHaveText(
@@ -47,7 +51,6 @@ test.describe('Automated Purchase Process', () => {
             'secret_sauce',
         );
         await expect(page).toHaveURL(/inventory.html/);
-
         const swagLabsInventory = new SwagLabsInventory(page);
         await swagLabsInventory.footerCopy.scrollIntoViewIfNeeded();
         await expect(swagLabsInventory.footerCopy).toHaveText(/2024/);

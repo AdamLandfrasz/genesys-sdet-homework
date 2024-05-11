@@ -3,12 +3,17 @@ import { GuruDemo } from '../test/pages/guru-demo/guru-demo';
 import { SeleniumTutorial } from '../test/pages/guru-demo/selenium-tutorial';
 
 test.describe('Navigate around guru99 demo page', () => {
+    let guruDemo: GuruDemo;
+
+    test.beforeEach(async ({ page }) => {
+        guruDemo = new GuruDemo(page);
+        await guruDemo.goto();
+    });
+
     test('should open a page on new tab and navigate back', async ({
         page,
         context,
     }) => {
-        const guruDemo = new GuruDemo(page);
-        await guruDemo.goto();
         await guruDemo.gdprAcceptButton.click();
 
         const newPage = await guruDemo.waitForNewPage(context, async () => {
