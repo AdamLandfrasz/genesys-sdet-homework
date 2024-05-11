@@ -2,8 +2,8 @@ import { promises as fs } from 'fs';
 import { type BrowserContext, type Page } from '@playwright/test';
 
 export class BasePage {
-    protected page: Page;
-    protected url: string;
+    protected readonly page: Page;
+    protected readonly url: string;
 
     constructor(page: Page, url: string) {
         this.page = page;
