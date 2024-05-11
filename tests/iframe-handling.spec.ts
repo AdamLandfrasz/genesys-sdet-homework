@@ -26,11 +26,13 @@ test.describe('Navigate around guru99 demo page', () => {
 
         await guruDemo.testingMenuItem.hover();
         await guruDemo.seleniumLink.click();
-        await guruDemo.closeAdButton.click(); // to close google ad popup
+        await guruDemo.clickInPageCorner(); // to close google ad popup
         await expect(page).toHaveTitle(/Selenium Tutorial/);
 
         const seleniumTutorial = new SeleniumTutorial(page);
+        await seleniumTutorial.privacyAcceptButton.click();
         await page.keyboard.press('End');
+        await seleniumTutorial.learnSeleniumForm.scrollIntoViewIfNeeded();
         await expect(seleniumTutorial.submitButton).toBeVisible();
     });
 });

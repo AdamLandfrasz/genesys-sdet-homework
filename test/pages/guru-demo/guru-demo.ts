@@ -6,7 +6,6 @@ export class GuruDemo extends BasePage {
     readonly iframeImage: Locator;
     readonly testingMenuItem: Locator;
     readonly seleniumLink: Locator;
-    readonly closeAdButton: Locator;
 
     constructor(page: Page) {
         super(page, 'https://demo.guru99.com/test/guru99home/');
@@ -23,9 +22,5 @@ export class GuruDemo extends BasePage {
         this.seleniumLink = this.page
             .locator('#rt-header')
             .getByRole('link', { name: 'Selenium', exact: true });
-        this.closeAdButton = this.page
-            .frameLocator('iframe[title="3rd party ad content"]')
-            .frameLocator('iframe#ad_iframe')
-            .getByLabel('Close ad');
     }
 }

@@ -23,6 +23,10 @@ export class BasePage {
         return await pagePromise;
     }
 
+    async clickInPageCorner(): Promise<void> {
+        await this.page.mouse.click(0, 0);
+    }
+
     protected async readJSONFile(filename: string): Promise<any> {
         return JSON.parse(await fs.readFile(filename, 'utf-8'));
     }
