@@ -8,7 +8,7 @@ test.describe('Test a REST api', () => {
         jsonPlaceholder = new JsonPlaceholder(request);
     });
 
-    test('should send get request and validate data', async () => {
+    test('should send GET request and validate data', async () => {
         const users = await jsonPlaceholder.getUsers();
         users.forEach((user) => {
             console.log(
