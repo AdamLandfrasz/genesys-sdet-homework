@@ -8,6 +8,7 @@ export class TextEditor extends BasePage {
 
     constructor(page: Page) {
         super(page, 'https://onlinehtmleditor.dev/');
+
         this.textbox = this.page.getByRole('textbox');
         this.placeholder = this.page.getByRole('textbox').locator('p');
     }

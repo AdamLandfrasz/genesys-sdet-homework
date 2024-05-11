@@ -1,7 +1,6 @@
 import { type Page, type Locator } from '@playwright/test';
 import { BasePage } from '../base-page';
 
-
 export class SwagLabsCheckout extends BasePage {
     readonly checkoutButton: Locator;
     readonly continueButton: Locator;
@@ -13,6 +12,7 @@ export class SwagLabsCheckout extends BasePage {
 
     constructor(page: Page) {
         super(page, 'https://www.saucedemo.com/cart.html');
+
         this.checkoutButton = this.page.locator('button#checkout');
         this.firstName = this.page.locator('input#first-name');
         this.lastName = this.page.locator('input#last-name');

@@ -9,6 +9,7 @@ export class SwagLabsLanding extends BasePage {
 
     constructor(page: Page) {
         super(page, 'https://www.saucedemo.com');
+
         this.usernameInput = this.page.locator('#user-name');
         this.passwordInput = this.page.locator('#password');
         this.loginButton = this.page.locator('#login-button');

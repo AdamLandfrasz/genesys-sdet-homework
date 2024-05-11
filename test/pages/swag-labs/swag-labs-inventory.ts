@@ -8,6 +8,7 @@ export class SwagLabsInventory extends BasePage {
 
     constructor(page: Page) {
         super(page, 'https://www.saucedemo.com/inventory.html');
+
         this.shoppingCart = this.page.locator('#shopping_cart_container a');
         this.shoppingCartBadge = this.page.locator(
             '#shopping_cart_container [data-test="shopping-cart-badge"]',

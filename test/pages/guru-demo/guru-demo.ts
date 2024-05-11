@@ -10,6 +10,7 @@ export class GuruDemo extends BasePage {
 
     constructor(page: Page) {
         super(page, 'https://demo.guru99.com/test/guru99home/');
+
         this.gdprAcceptButton = this.page
             .frameLocator('#gdpr-consent-notice')
             .locator('button', { hasText: 'Accept All' });
